@@ -19,4 +19,4 @@ If you want to become a contributor then just contribute some code and I will ad
 This project is released under the GNU General Public License v3.0. See the included license file.
 
 # Notes
-This project isn't working at the moment. I'm on it ! I'm a member of the SolarCarSolutions association (http://solarcarsolutions.com)and I develop this application for our electrical and solar car, if you are interest to work with us for a good reason, contact me. :-)
+This project isn't working at the moment. I'm on it ! I'm a member of the SolarCarSolutions association (http://solarcarsolutions.com) and I develop this application for our electrical and solar car, if you are interest to work with us for a good reason, contact me. :-)
