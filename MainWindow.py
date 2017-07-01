@@ -1,11 +1,12 @@
 # python 3.5.X
 # Made for ArangoDB 3.1.X - PyQt5 - Pyuic5
 
-from Arango_GUI.ui_mainwindow import Ui_MainWindow
-from ArangoManagement import DataManagement
-from Terminal import Terminal
-from FileAnalytics import FileAnalytics
+from Ui.ui_mainwindow import Ui_MainWindow
+from Gui.ArangoManagement import DataManagement
+from Gui.Terminal import Terminal
+from Gui.FileAnalytics import FileAnalytics
 import re
+# from PyQt5.QtCore import pyqtSignal, QObject
 
 
 class MainWindow(Ui_MainWindow):
@@ -20,9 +21,9 @@ class MainWindow(Ui_MainWindow):
         self.ui = Ui_MainWindow
         self.database = DataManagement()
         '''self.db12 = '''
-        self.database.create_database()
-        self.database.add_collection('test2')
-        self.database_ui_update()
+        # self.database.create_database()
+        # self.database.add_collection('test3')
+        # self.database_ui_update()
         ###############
         self.ui.pushButton_connection.clicked.connect(self.pushButton_connection_clicked)
         self.ui.pushButton_disconnection.clicked.connect(self.pushButton_disconnection_clicked)
@@ -30,11 +31,15 @@ class MainWindow(Ui_MainWindow):
         self.ui.pushButton_create_flux.clicked.connect(self.pushButton_create_flux_clicked)
         self.ui.pushButton_file_import.clicked.connect(self.pushButton_file_import_clicked)
         self.ui.actionUpdate.triggered.connect(self.actionUpdate_clicked)
+        self.ui.pushButton_send.clicked.connect(self.pushButton_send)
         ##############
         ###DEBUG#####
         self.ui.pushButton_file_import_DEBUG.clicked.connect(self.pushButton_file_import_DEBUG_clicked)
         #############
-        self.term = Terminal(True)
+        # self.term = Terminal(True)
+        self.ui.pushButton_send2.hide()
+        self.ui.label_collection.hide()
+        self.ui.lineEdit_collection.hide()
 
     def database_ui_update(self):
         self.ui.database_name.setText(self.database._database_name)
@@ -46,18 +51,64 @@ class MainWindow(Ui_MainWindow):
         else:
             self.ui.status_connection.setText('Unavailable')
 
-    # Qt Creator signals
+    # Qt Creator slot
     def pushButton_connection_clicked(self):
-        # self.ui.verticalLayout_widget.addWidget(term.add_widget('Database name:'))
-        self.term.add_widget('Database name:')
-        self.term.exec_()
-        self.term.ui_terminal.pushButton.clicked.connect(self.Ui_terminal_pushButton())
+        # self.term.add_widget('Database name:')
+        # self.term.exec_()
+        self.ui.label_database_name.show()
+        self.ui.lineEdit_database_name.show()
+        self.ui.lineEdit_ip_address.show()
+        self.ui.label_ip_address.show()
+        self.ui.lineEdit_port.show()
+        self.ui.label_port.show()
+        self.ui.lineEdit_user_name.show()
+        self.ui.label_user_name.show()
+        self.ui.lineEdit_password.show()
+        self.ui.label_password.show()
+        self.ui.pushButton_send.show()
+        # self.ui.pushButton_send.clicked.connect(self.pushButton_send)
 
-    def Ui_terminal_pushButton(self):
-        # self.term.ui_terminal.pushButton.clicked.disconnect()
-        self.term.close()
-        self.value = self.term.value
-        print("(MainWindow)(Ui_terminal_pushButton) value =", self.value)
+    def pushButton_send(self):
+        self.database.database_name = self.ui.lineEdit_database_name.text()
+        self.database.database_host = self.ui.lineEdit_ip_address.text()
+        self.database.database_port = int(self.ui.lineEdit_port.text())
+        self.database.user_name = self.ui.lineEdit_user_name.text()
+        self.database.user_password = self.ui.lineEdit_password.text()
+
+        self.ui.label_database_name.hide()
+        self.ui.lineEdit_database_name.hide()
+        self.ui.lineEdit_ip_address.hide()
+        self.ui.label_ip_address.hide()
+        self.ui.lineEdit_port.hide()
+        self.ui.label_port.hide()
+        self.ui.lineEdit_user_name.hide()
+        self.ui.label_user_name.hide()
+        self.ui.lineEdit_password.hide()
+        self.ui.label_password.hide()
+        self.ui.pushButton_send.hide()
+
+        self.database.create_database()
+        self.database_ui_update()
+        self.database.add_collection('test3')
+        self.ui.pushButton_send.disconnect()
+        self.ui.pushButton_send2.clicked.connect(self.pushButton_send2)
+
+        self.ui.pushButton_send2.show()
+        self.ui.label_collection.show()
+        self.ui.lineEdit_collection.show()
+
+    def pushButton_send2(self):
+        self.database.add_collection(self.ui.lineEdit_collection.text())
+
+        self.ui.pushButton_send2.hide()
+        self.ui.label_collection.hide()
+        self.ui.lineEdit_collection.hide()
+
+        self.ui.pushButton_connection.setEnabled(True)
+        self.ui.pushButton_disconnection.setEnabled(True)
+        self.ui.pushButton_file_import_DEBUG.setEnabled(True)
+
+        self.ui.pushButton_send2.disconnect()
 
     def pushButton_disconnection_clicked(self):
         pass
