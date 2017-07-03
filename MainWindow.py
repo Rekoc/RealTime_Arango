@@ -5,7 +5,10 @@ from Ui.ui_mainwindow import Ui_MainWindow
 from Gui.ArangoManagement import DataManagement
 from Gui.Terminal import Terminal
 from Gui.FileAnalytics import FileAnalytics
+from PyQt5.QtWidgets import QWidget, QDialog, QFileDialog, QErrorMessage, QMessageBox
+from PyQt5 import QtCore
 import re
+import os
 # from PyQt5.QtCore import pyqtSignal, QObject
 
 
@@ -15,6 +18,7 @@ class MainWindow(Ui_MainWindow):
     ui = object
     term = object
     value = ''
+    path_file = ''
 
     def __init__(self, Ui_MainWindow):
         print('(MainWindow)(__init__) Object created')
@@ -123,39 +127,49 @@ class MainWindow(Ui_MainWindow):
         pass
 
     def pushButton_file_import_clicked(self):
-        self.ui.addWidget()
+        # print("(MainWindow)(pushButton_file_import_clicked)")
+        self.path_file = QFileDialog.getOpenFileName(None, "Open txt file", os.getenv('HOME'), "Text File (*.txt)")
+        self.ui.label_path.setText(self.path_file[0])
+        # print("(MainWindow)(pushButton_file_import_clicked) path = ", self.path_file)
 
     def pushButton_file_import_DEBUG_clicked(self):
-        path_file = 'TEST_short.TXT'
-        file_analyse = FileAnalytics(path=path_file)
-        list_data = []
-        konsole = Terminal(False)
+        # path_file = 'TEST_short.TXT'
+        if self.path_file=='':
+            print("(MainWindow)(pushButton_file_import_DEBUG_clicked) self.path_file[0]=='' ")
+            error_message = QErrorMessage(None)
+            error_message.setModal(True)
+            error_message.showMessage('Please click on "import file" before ...')
+            error_message.show()
+        else:
+            file_analyse = FileAnalytics(path=self.path_file[0])
+            list_data = []
+            konsole = Terminal(False)
 
-        list_database = konsole.header_creation_automatic('database_9',
+            list_database = konsole.header_creation_automatic('database_9',
                                                           'Blablabla!!!')
-        list_column = konsole.column_creation_automatic(['c1', 'c2', 'c3', 'c4',
-                                                         'c5', 'c6', 'c7', 'c8', 'q'])
-        with open(path_file, 'r') as file:
-            line = 'empty'
-            regex = re.compile(r'[\n\r\t]')
-            for line in file:
-                line = file.readline()
-                if line:
-                    line = regex.sub(" ", line)
-                    # print('(Main) line = ', line)
-                    line_treated = line.split(';')
-                    for i in range(line.count(';')):
-                        list_data.append(int(line_treated[i]))
-                    # print('(Main) list_data = ', list_data)
-                    kwarg = file_analyse.get_dic_from_two_lists(list_column, list_data)
-                    # print('(Main) line merge = ', kwarg)
-                    list_data.clear()
-                    result = self.database.add_data(**kwarg)
-                    kwarg.clear()
-                    # print('(Main) kwarg = ', kwarg)
-                else:
-                    print('(Main) line empty')
+            list_column = konsole.column_creation_automatic(['c1', 'c2', 'c3', 'c4',
+                                                             'c5', 'c6', 'c7', 'c8', 'q'])
+            with open(self.path_file[0], 'r') as file:
+                line = 'empty'
+                regex = re.compile(r'[\n\r\t]')
+                for line in file:
+                    line = file.readline()
+                    if line:
+                        line = regex.sub(" ", line)
+                        # print('(Main) line = ', line)
+                        line_treated = line.split(';')
+                        for i in range(line.count(';')):
+                            list_data.append(int(line_treated[i]))
+                        # print('(Main) list_data = ', list_data)
+                        kwarg = file_analyse.get_dic_from_two_lists(list_column, list_data)
+                        # print('(Main) line merge = ', kwarg)
+                        list_data.clear()
+                        result = self.database.add_data(**kwarg)
+                        kwarg.clear()
+                        # print('(Main) kwarg = ', kwarg)
+                    else:
+                        print('(Main) line empty')
 
-            result = self.database.add_data(**kwarg)
+                result = self.database.add_data(**kwarg)
 
-            del regex, result, kwarg, list_column, list_database, line, konsole, file_analyse, file, path_file, line_treated
+                del regex, result, kwarg, list_column, list_database, line, konsole, file_analyse, file, line_treated
