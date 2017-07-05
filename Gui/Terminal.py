@@ -3,16 +3,16 @@
 
 from Ui.ui_terminal import Ui_terminal
 from PyQt5 import QtWidgets
+from MainWindow import MainWindow
 from PyQt5.QtCore import pyqtSignal, QObject
 
 
-class Terminal(QtWidgets.QDialog):
+class Terminal(QtWidgets.QDialog, MainWindow):
 
     list_column = []
     list_database = []
     ui_terminal = object
     value = ''
-    # value_change = pyqtSignal(str)
 
     def __init__(self, select_mode=True, parent=None):
         # print('(Terminal)(__init__) Terminal object was created')

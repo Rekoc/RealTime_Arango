@@ -7,6 +7,7 @@ from Gui.Terminal import Terminal
 from Gui.FileAnalytics import FileAnalytics
 from PyQt5.QtWidgets import QWidget, QDialog, QFileDialog, QErrorMessage, QMessageBox
 from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtCore import QObject, pyqtSignal
 import re
 import os
 
@@ -18,6 +19,8 @@ class MainWindow(Ui_MainWindow):
     term = object
     value = ''
     path_file = ''
+    paul_suce = ''
+    term_value_changed = pyqtSignal()
 
     def __init__(self, Ui_MainWindow):
         print('(MainWindow)(__init__) Object created')
@@ -39,7 +42,7 @@ class MainWindow(Ui_MainWindow):
         ###DEBUG#####
         self.ui.pushButton_file_import_DEBUG.clicked.connect(self.pushButton_file_import_DEBUG_clicked)
         #############
-        # self.term = Terminal(True)
+        self.term = Terminal(True)
         self.ui.pushButton_send2.hide()
         self.ui.label_collection.hide()
         self.ui.lineEdit_collection.hide()
