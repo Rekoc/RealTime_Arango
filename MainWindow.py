@@ -6,10 +6,9 @@ from Gui.ArangoManagement import DataManagement
 from Gui.Terminal import Terminal
 from Gui.FileAnalytics import FileAnalytics
 from PyQt5.QtWidgets import QWidget, QDialog, QFileDialog, QErrorMessage, QMessageBox
-from PyQt5 import QtCore
+from PyQt5.QtGui import QIcon, QPixmap
 import re
 import os
-# from PyQt5.QtCore import pyqtSignal, QObject
 
 
 class MainWindow(Ui_MainWindow):
@@ -130,16 +129,18 @@ class MainWindow(Ui_MainWindow):
         # print("(MainWindow)(pushButton_file_import_clicked)")
         self.path_file = QFileDialog.getOpenFileName(None, "Open txt file", os.getenv('HOME'), "Text File (*.txt)")
         self.ui.label_path.setText(self.path_file[0])
-        # print("(MainWindow)(pushButton_file_import_clicked) path = ", self.path_file)
+        # print("(MainWindow)(pushButton_file_import_clicked) path = ", self.path_file[0])
+        # print("(MainWindow)(pushButton_file_import_clicked) path = ", len(self.path_file[0]))
 
     def pushButton_file_import_DEBUG_clicked(self):
         # path_file = 'TEST_short.TXT'
-        if self.path_file=='':
+        if self.path_file[0]=='':
             print("(MainWindow)(pushButton_file_import_DEBUG_clicked) self.path_file[0]=='' ")
-            error_message = QErrorMessage(None)
-            error_message.setModal(True)
-            error_message.showMessage('Please click on "import file" before ...')
-            error_message.show()
+            error_message = QMessageBox(None)
+            error_message.setText('Please click on "File import" and choose your path first ...')
+            error_message.setWindowTitle('Warning')
+            error_message.setIconPixmap(QPixmap('../ressource/icon/Warning.png'))
+            error_message.exec()
         else:
             file_analyse = FileAnalytics(path=self.path_file[0])
             list_data = []
