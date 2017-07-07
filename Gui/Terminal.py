@@ -15,12 +15,12 @@ class Terminal(QtWidgets.QDialog, MainWindow):
     value = ''
 
     def __init__(self, select_mode=True, parent=None):
-        # print('(Terminal)(__init__) Terminal object was created')
+        print('(Terminal)(__init__) Terminal object was created')
         super(Terminal, self).__init__(parent)
         self.ui_terminal = Ui_terminal()
 
         if select_mode:
-            pass
+            self.term_var = 1
             # print('(Terminal)(__init__) Manual mode selected')
             # self.header_creation_manual()
         else:

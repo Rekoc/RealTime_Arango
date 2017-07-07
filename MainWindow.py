@@ -3,7 +3,7 @@
 
 from Ui.ui_mainwindow import Ui_MainWindow
 from Gui.ArangoManagement import DataManagement
-from Gui.Terminal import Terminal
+# from Gui.Terminal import Terminal
 from Gui.FileAnalytics import FileAnalytics
 from PyQt5.QtWidgets import QWidget, QDialog, QFileDialog, QErrorMessage, QMessageBox
 from PyQt5.QtGui import QIcon, QPixmap
@@ -17,10 +17,9 @@ class MainWindow(Ui_MainWindow):
     database = DataManagement()
     ui = object
     term = object
-    value = ''
     path_file = ''
-    paul_suce = ''
-    term_value_changed = pyqtSignal()
+    term_var = 0
+    term_value_changed = pyqtSignal(int)
 
     def __init__(self, Ui_MainWindow):
         print('(MainWindow)(__init__) Object created')
@@ -41,6 +40,7 @@ class MainWindow(Ui_MainWindow):
         ##############
         ###DEBUG#####
         self.ui.pushButton_file_import_DEBUG.clicked.connect(self.pushButton_file_import_DEBUG_clicked)
+        self.term_value_changed.connect(self.term_value_changed)
         #############
         self.term = Terminal(True)
         self.ui.pushButton_send2.hide()
@@ -121,6 +121,9 @@ class MainWindow(Ui_MainWindow):
 
     def pushButton_scan_clicked(self):
         pass
+
+    def term_value_changed(self):
+        print("(MainWindow)(term_value_changed) term_var = ", self.term_var)
 
     def actionUpdate_clicked(self):
         self.database_ui_update()

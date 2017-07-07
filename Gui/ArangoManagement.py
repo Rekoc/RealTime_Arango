@@ -3,7 +3,7 @@
 
 from arango import ArangoClient, ArangoError
 from Gui.AqlRequest import AqlRequest
-from Gui.Terminal import Terminal
+# from Gui.Terminal import Terminal
 
 
 class DataManagement():
