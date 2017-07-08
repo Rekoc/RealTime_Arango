@@ -2,7 +2,7 @@
 # Made for ArangoDB 3.1.X - Developer version & python-arango driver 3.X
 
 from arango import ArangoClient, ArangoError
-from Gui.AqlRequest import AqlRequest
+from packages.aqlrequest import AqlRequest
 # from Gui.Terminal import Terminal
 
 
@@ -74,7 +74,7 @@ class DataManagement():
 
     def create_database(self):
         # Create IHM
-        window = Terminal(False)
+        # window = Terminal(False)
         ###########
         # Need to be in manual
         '''self.database_name = window.enter_value_automatic('database1')

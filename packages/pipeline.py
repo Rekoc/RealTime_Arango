@@ -1,13 +1,11 @@
 # python 3.5.X
 # Pipeline creation and management
 
-from multiprocessing import Pipe
 import multiprocessing
-import time
-from FileAnalytics import FileAnalytics
 import re
-from Terminal import Terminal
-from ArangoManagement import DataManagement
+from packages.fileanalytics import FileAnalytics
+from packages.terminal import Terminal
+from packages.arangomanagement import DataManagement
 
 
 class Pipeline(multiprocessing.Process):

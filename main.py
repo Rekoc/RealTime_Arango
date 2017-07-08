@@ -40,16 +40,16 @@ main()                              # run the main function'''
 
 import sys
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow
-from Ui.ui_mainwindow import Ui_MainWindow
-
-from MainWindow import MainWindow
+from packages import *
+from packages.Ui import *
 
 app = QApplication(sys.argv)
 window = QMainWindow()
-ui = Ui_MainWindow()
+ui = ui_mainwindow.Ui_MainWindow()
 ui.setupUi(window)
 
-fenetre = MainWindow(ui)
+fenetre = mainwindow.MainWindow()
+fenetre.init(ui)
 
 # ui est l'objet a modifier pour atteindre l'IHM
 # ui.database_name.setText('1234azer')

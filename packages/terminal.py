@@ -1,13 +1,11 @@
 # python 3.5.X
 # Database management creation Terminal
 
-from Ui.ui_terminal import Ui_terminal
-from PyQt5 import QtWidgets
-from MainWindow import MainWindow
-from PyQt5.QtCore import pyqtSignal, QObject
+from packages.mainwindow import *
+from packages.Ui import ui_terminal
 
 
-class Terminal(QtWidgets.QDialog, MainWindow):
+class Terminal(MainWindow):
 
     list_column = []
     list_database = []
@@ -17,10 +15,10 @@ class Terminal(QtWidgets.QDialog, MainWindow):
     def __init__(self, select_mode=True, parent=None):
         print('(Terminal)(__init__) Terminal object was created')
         super(Terminal, self).__init__(parent)
-        self.ui_terminal = Ui_terminal()
+        self.ui_terminal = ui_terminal.Ui_terminal()
 
         if select_mode:
-            self.term_var = 1
+            pass
             # print('(Terminal)(__init__) Manual mode selected')
             # self.header_creation_manual()
         else:
