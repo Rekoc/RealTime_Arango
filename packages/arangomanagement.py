@@ -3,7 +3,6 @@
 
 from arango import ArangoClient, ArangoError
 from packages.aqlrequest import AqlRequest
-# from Gui.Terminal import Terminal
 
 
 class DataManagement():
@@ -129,6 +128,7 @@ class DataManagement():
         try:
             self.data = self.database.create_collection(collection_name)
             # print('(DataManagement)(add_collection)', self.data.all())
+            # self.data = self.database.collection(collection_name)
         except ArangoError as exc:
             self.data = self.database.collection(collection_name)
             # print('(DataManagement)(add_collection)', self.data.all())

@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e365a21f-dcc2-4b49-b0fe-78145468bc54" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gui/AqlRequest.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gui/ArangoManagement.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gui/DataFormating.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gui/FileAnalytics.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gui/Pipeline.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gui/Terminal.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MainWindow.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ui/Arango_GUI.pro" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ui/Arango_GUI.pro.user" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ui/mainwindow.ui" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ui/terminal.ui" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ui/ui_mainwindow.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ui/ui_terminal.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ressource/icon/Warning.png" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/Ui/ui_form_collection.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/Ui/ui_form_database.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/Ui/ui_mainwindow.py" afterPath="$PROJECT_DIR$/packages/Ui/ui_mainwindow.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/Ui/ui_terminal.py" afterPath="$PROJECT_DIR$/packages/Ui/ui_terminal.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/arangomanagement.py" afterPath="$PROJECT_DIR$/packages/arangomanagement.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/mainwindow.py" afterPath="$PROJECT_DIR$/packages/mainwindow.py" />
     </list>
     <ignored path="RealTime_Arango.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +23,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/RealTime_Arango$main.coverage" NAME="main Coverage Results" MODIFIED="1499271294772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/RealTime_Arango$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1499544655148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RealTime_Arango$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1499607343789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -55,14 +46,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainwindow.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mainwindow.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/mainwindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1201">
-              <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+            <state relative-caret-position="-507">
+              <caret line="110" column="43" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="43" />
               <folding>
                 <element signature="e#59#111#0" expanded="true" />
+                <element signature="e#2569#3022#0" expanded="false" />
+                <element signature="e#5383#5387#0" expanded="false" />
+                <element signature="e#5436#5440#0" expanded="false" />
+                <element signature="e#5484#5552#0" expanded="false" />
+                <element signature="e#5598#5623#0" expanded="false" />
+                <element signature="e#5679#5683#0" expanded="false" />
+                <element signature="e#6213#8354#0" expanded="false" />
+                <element signature="e#9885#10044#0" expanded="false" />
+                <element signature="e#10102#10118#0" expanded="false" />
+                <element signature="e#10156#10240#0" expanded="false" />
+                <element signature="e#10280#10370#0" expanded="false" />
+                <element signature="e#11036#11511#0" expanded="false" />
+                <element signature="e#11559#12204#0" expanded="false" />
+                <element signature="e#12279#12556#0" expanded="false" />
+                <element signature="e#12613#13226#0" expanded="false" />
+                <element signature="e#13564#13683#0" expanded="false" />
+                <element signature="e#13779#13796#0" expanded="false" />
+                <element signature="e#13842#13902#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ui_form_collection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/Ui/ui_form_collection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ui_form_database.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/Ui/ui_form_database.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="419">
+              <caret line="65" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="65" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -79,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arangomanagement.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="arangomanagement.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/packages/arangomanagement.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+            <state relative-caret-position="-1605">
+              <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
               <folding>
                 <element signature="e#89#133#0" expanded="true" />
               </folding>
@@ -107,7 +136,7 @@
         <entry file="file://$PROJECT_DIR$/packages/Ui/ui_terminal.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="17" />
+              <caret line="11" column="37" selection-start-line="8" selection-start-column="0" selection-end-line="11" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -116,8 +145,8 @@
       <file leaf-file-name="ui_mainwindow.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/Ui/ui_mainwindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
+            <state relative-caret-position="3180">
+              <caret line="215" column="55" selection-start-line="215" selection-start-column="53" selection-end-line="215" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -155,8 +184,12 @@
         <option value="$PROJECT_DIR$/packages/pipeline.py" />
         <option value="$PROJECT_DIR$/packages/terminal.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/packages/arangomanagement.py" />
+        <option value="$PROJECT_DIR$/packages/Ui/ui_terminal.py" />
+        <option value="$PROJECT_DIR$/packages/Ui/ui_mainwindow.py" />
+        <option value="$PROJECT_DIR$/packages/Ui/ui_form_database.py" />
         <option value="$PROJECT_DIR$/packages/mainwindow.py" />
+        <option value="$PROJECT_DIR$/packages/Ui/ui_form_collection.py" />
+        <option value="$PROJECT_DIR$/packages/arangomanagement.py" />
       </list>
     </option>
   </component>
@@ -177,7 +210,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -565,7 +598,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -727,17 +760,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="e#1#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding>
-            <element signature="e#1#30#0" expanded="true" />
+            <element signature="e#1#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -776,32 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/terminal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#56#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/Ui/ui_terminal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/Ui/ui_mainwindow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -812,22 +809,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/arangomanagement.py">
+    <entry file="file://$PROJECT_DIR$/packages/terminal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+        <state relative-caret-position="75">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
-            <element signature="e#89#133#0" expanded="true" />
+            <element signature="e#56#89#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/Ui/ui_mainwindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3180">
+          <caret line="215" column="55" selection-start-line="215" selection-start-column="53" selection-end-line="215" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/Ui/ui_terminal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="37" selection-start-line="8" selection-start-column="0" selection-end-line="11" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+          <folding>
+            <element signature="e#1#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/Ui/ui_form_database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="65" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="65" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/mainwindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1201">
-          <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+        <state relative-caret-position="-507">
+          <caret line="110" column="43" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="43" />
           <folding>
             <element signature="e#59#111#0" expanded="true" />
+            <element signature="e#2569#3022#0" expanded="false" />
+            <element signature="e#5383#5387#0" expanded="false" />
+            <element signature="e#5436#5440#0" expanded="false" />
+            <element signature="e#5484#5552#0" expanded="false" />
+            <element signature="e#5598#5623#0" expanded="false" />
+            <element signature="e#5679#5683#0" expanded="false" />
+            <element signature="e#6213#8354#0" expanded="false" />
+            <element signature="e#9885#10044#0" expanded="false" />
+            <element signature="e#10102#10118#0" expanded="false" />
+            <element signature="e#10156#10240#0" expanded="false" />
+            <element signature="e#10280#10370#0" expanded="false" />
+            <element signature="e#11036#11511#0" expanded="false" />
+            <element signature="e#11559#12204#0" expanded="false" />
+            <element signature="e#12279#12556#0" expanded="false" />
+            <element signature="e#12613#13226#0" expanded="false" />
+            <element signature="e#13564#13683#0" expanded="false" />
+            <element signature="e#13779#13796#0" expanded="false" />
+            <element signature="e#13842#13902#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/Ui/ui_form_collection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/arangomanagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1605">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding>
+            <element signature="e#89#133#0" expanded="true" />
           </folding>
         </state>
       </provider>

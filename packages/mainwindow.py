@@ -5,7 +5,9 @@ from packages.arangomanagement import DataManagement
 from packages.fileanalytics import FileAnalytics
 from packages.Ui.ui_mainwindow import Ui_MainWindow
 from packages.Ui.ui_terminal import Ui_terminal
-from PyQt5.QtWidgets import QWidget, QDialog, QFileDialog, QErrorMessage, QMessageBox
+from packages.Ui.ui_form_database import Ui_Form_Database
+from packages.Ui.ui_form_collection import Ui_Form_Collection
+from PyQt5.QtWidgets import QWidget, QDialog, QFileDialog, QErrorMessage, QMessageBox, QLabel, QLineEdit, QFormLayout, QPushButton
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import QObject, pyqtSignal
 import re
@@ -22,6 +24,7 @@ class MainWindow(Ui_MainWindow):
     term_value_changed = pyqtSignal(int)
 
     def __init__(self):
+        super(MainWindow, self).__init__()
         print('(MainWindow)(__init__) Object created')
 
     def init(self, Ui_MainWindow):
@@ -46,7 +49,13 @@ class MainWindow(Ui_MainWindow):
         # self.term_value_changed.connect(self.term_value_changed)
         #############
 
-        self.term = Terminal(True)
+        # self.term = Terminal()
+        self.widget = Ui_Form_Database()
+        self.push_button_validation = QPushButton('Send')
+        self.ui.verticalLayout.addWidget(self.widget.Form_Database)
+        self.ui.verticalLayout.addWidget(self.push_button_validation)
+        self.push_button_validation.clicked.connect(self.push_button_database_validation_clicked)
+
         self.ui.pushButton_send2.hide()
         self.ui.label_collection.hide()
         self.ui.lineEdit_collection.hide()
@@ -154,7 +163,7 @@ class MainWindow(Ui_MainWindow):
         else:
             file_analyse = FileAnalytics(path=self.path_file[0])
             list_data = []
-            konsole = Terminal(False)
+            konsole = Terminal()
 
             list_database = konsole.header_creation_automatic('database_9',
                                                           'Blablabla!!!')
@@ -185,6 +194,33 @@ class MainWindow(Ui_MainWindow):
 
                 del regex, result, kwarg, list_column, list_database, line, konsole, file_analyse, file, line_treated
 
+    def push_button_database_validation_clicked(self):
+        self.database.database_name = self.widget.line_edit1.text()
+        self.database.database_host = self.widget.line_edit2.text()
+        self.database.database_port = self.widget.line_edit3.text()
+        self.database.user_name = self.widget.line_edit4.text()
+        self.database.user_password = self.widget.line_edit5.text()
+        self.push_button_validation.disconnect()
+        self.push_button_validation.deleteLater()
+        del self.widget
+
+        self.widget = Ui_Form_Collection()
+        self.push_button_validation = QPushButton('Send')
+        self.ui.verticalLayout.addWidget(self.widget.Form_Collection)
+        self.ui.verticalLayout.addWidget(self.push_button_validation)
+        self.push_button_validation.clicked.connect(self.push_button_ui_collection_validation_clicked)
+
+    def push_button_ui_collection_validation_clicked(self):
+        self.database.add_collection(self.widget.line_edit1.text())
+        self.push_button_validation.disconnect()
+        self.push_button_validation.deleteLater()
+        del self.widget
+
+
+##########################
+##########################
+##########################
+
 
 class Terminal(MainWindow):
 
@@ -193,18 +229,10 @@ class Terminal(MainWindow):
     ui_terminal = object
     value = ''
 
-    def __init__(self, select_mode=True, ui=None):
+    def __init__(self):
         print('(Terminal)(__init__) Terminal object was created')
         super(Terminal, self).__init__()
         self.ui_terminal = Ui_terminal()
-
-        if select_mode:
-            pass
-            # print('(Terminal)(__init__) Manual mode selected')
-            # self.header_creation_manual()
-        else:
-            # print('(Terminal)(__init__) Automatic mode selected')
-            pass
 
     def enter_value(self, parameter):
         print('(Terminal)(enter_value) Enter ', parameter, ' : ')
@@ -223,11 +251,20 @@ class Terminal(MainWindow):
         print('(Terminal)(_list_database) return list_database')
         return self.list_database
 
+    def database_information(self):
+        print('(Terminal)(database_information) BEGIN')
+        label = QLabel()
+        self.field = QLineEdit()
+        self.layoutt = QFormLayout()
+        self.layoutt.addRow('lol', self.field)
+        self.ui.setCentralWidget(self.layoutt)
+        print('(Terminal)(database_information) END')
+
     def add_widget(self, arg):
-        self.ui_terminal.setupUi(self)
+        print('(Terminal)(add_widget) BEGIN')
         self.ui_terminal.label.setText(arg)
         # self.ui_terminal.pushButton.clicked.connect(self.pushButton_save_clicked)
-        # self.value_change.connect(self.Ui_terminal_value_change)
+        print('(Terminal)(add_widget) END')
         return self.ui_terminal
 
     def header_creation_manual(self):
@@ -279,8 +316,8 @@ class Terminal(MainWindow):
     def pushButton_save_clicked(self):
         print('(Terminal)(pushButton_save_clicked) BEGIN')
         self.value = self.ui_terminal.lineEdit.text()
-        # self.ui_terminal.pushButton.disconnect()
-        # super.value_change.emit(self.value)
+        self.ui_terminal.pushButton.disconnect()
+        self.close_QDialog()
         print('(Terminal)(pushButton_save_clicked) END')
 
     def Ui_terminal_value_change(self):
@@ -288,7 +325,7 @@ class Terminal(MainWindow):
         print("(Terminal)(Ui_terminal_value_change) value =", self.value)
 
     def close_QDialog(self):
-        self.close()
+        self.ui_terminal.close()
 
     def __str__(self):
         return 'Terminal'

@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_terminal(object):
+class Ui_terminal(QtWidgets.QWidget):
     def setupUi(self, terminal):
         terminal.setObjectName("terminal")
         terminal.setWindowModality(QtCore.Qt.WindowModal)
