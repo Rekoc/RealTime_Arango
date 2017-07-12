@@ -19,7 +19,7 @@ class MainWindow(Ui_MainWindow):
     database = DataManagement()
     ui = object
     term = object
-    path_file = ''
+    path_file = ['', '']
     term_var = 0
     term_value_changed = pyqtSignal(int)
 
@@ -42,23 +42,20 @@ class MainWindow(Ui_MainWindow):
         self.ui.pushButton_create_flux.clicked.connect(self.pushButton_create_flux_clicked)
         self.ui.pushButton_file_import.clicked.connect(self.pushButton_file_import_clicked)
         self.ui.actionUpdate.triggered.connect(self.actionUpdate_clicked)
-        self.ui.pushButton_send.clicked.connect(self.pushButton_send)
         ##############
         ###DEBUG#####
         self.ui.pushButton_file_import_DEBUG.clicked.connect(self.pushButton_file_import_DEBUG_clicked)
         # self.term_value_changed.connect(self.term_value_changed)
         #############
 
+        self.ui.pushButton_connection.setEnabled(True)
+
         # self.term = Terminal()
-        self.widget = Ui_Form_Database()
+        '''self.widget = Ui_Form_Database()
         self.push_button_validation = QPushButton('Send')
         self.ui.verticalLayout.addWidget(self.widget.Form_Database)
         self.ui.verticalLayout.addWidget(self.push_button_validation)
-        self.push_button_validation.clicked.connect(self.push_button_database_validation_clicked)
-
-        self.ui.pushButton_send2.hide()
-        self.ui.label_collection.hide()
-        self.ui.lineEdit_collection.hide()
+        self.push_button_validation.clicked.connect(self.push_button_database_validation_clicked)'''
 
     def database_ui_update(self):
         self.ui.database_name.setText(self.database._database_name)
@@ -74,60 +71,12 @@ class MainWindow(Ui_MainWindow):
     def pushButton_connection_clicked(self):
         # self.term.add_widget('Database name:')
         # self.term.exec_()
-        self.ui.label_database_name.show()
-        self.ui.lineEdit_database_name.show()
-        self.ui.lineEdit_ip_address.show()
-        self.ui.label_ip_address.show()
-        self.ui.lineEdit_port.show()
-        self.ui.label_port.show()
-        self.ui.lineEdit_user_name.show()
-        self.ui.label_user_name.show()
-        self.ui.lineEdit_password.show()
-        self.ui.label_password.show()
-        self.ui.pushButton_send.show()
+        self.widget = Ui_Form_Database()
+        self.push_button_validation = QPushButton('Send')
+        self.ui.verticalLayout.addWidget(self.widget.Form_Database)
+        self.ui.verticalLayout.addWidget(self.push_button_validation)
+        self.push_button_validation.clicked.connect(self.push_button_database_validation_clicked)
         # self.ui.pushButton_send.clicked.connect(self.pushButton_send)
-
-    def pushButton_send(self):
-        self.database.database_name = self.ui.lineEdit_database_name.text()
-        self.database.database_host = self.ui.lineEdit_ip_address.text()
-        self.database.database_port = int(self.ui.lineEdit_port.text())
-        self.database.user_name = self.ui.lineEdit_user_name.text()
-        self.database.user_password = self.ui.lineEdit_password.text()
-
-        self.ui.label_database_name.hide()
-        self.ui.lineEdit_database_name.hide()
-        self.ui.lineEdit_ip_address.hide()
-        self.ui.label_ip_address.hide()
-        self.ui.lineEdit_port.hide()
-        self.ui.label_port.hide()
-        self.ui.lineEdit_user_name.hide()
-        self.ui.label_user_name.hide()
-        self.ui.lineEdit_password.hide()
-        self.ui.label_password.hide()
-        self.ui.pushButton_send.hide()
-
-        self.database.create_database()
-        self.database_ui_update()
-        self.database.add_collection('test3')
-        self.ui.pushButton_send.disconnect()
-        self.ui.pushButton_send2.clicked.connect(self.pushButton_send2)
-
-        self.ui.pushButton_send2.show()
-        self.ui.label_collection.show()
-        self.ui.lineEdit_collection.show()
-
-    def pushButton_send2(self):
-        self.database.add_collection(self.ui.lineEdit_collection.text())
-
-        self.ui.pushButton_send2.hide()
-        self.ui.label_collection.hide()
-        self.ui.lineEdit_collection.hide()
-
-        self.ui.pushButton_connection.setEnabled(True)
-        self.ui.pushButton_disconnection.setEnabled(True)
-        self.ui.pushButton_file_import_DEBUG.setEnabled(True)
-
-        self.ui.pushButton_send2.disconnect()
 
     def pushButton_disconnection_clicked(self):
         pass
@@ -211,10 +160,15 @@ class MainWindow(Ui_MainWindow):
         self.push_button_validation.clicked.connect(self.push_button_ui_collection_validation_clicked)
 
     def push_button_ui_collection_validation_clicked(self):
+        self.database.create_database()
         self.database.add_collection(self.widget.line_edit1.text())
         self.push_button_validation.disconnect()
         self.push_button_validation.deleteLater()
         del self.widget
+        self.ui.pushButton_connection.setEnabled(True)
+        self.ui.pushButton_disconnection.setEnabled(True)
+        self.ui.pushButton_file_import_DEBUG.setEnabled(True)
+        self.database_ui_update()
 
 
 ##########################

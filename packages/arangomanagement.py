@@ -126,7 +126,8 @@ class DataManagement():
 
     def add_collection(self, collection_name):
         try:
-            self.data = self.database.create_collection(collection_name)
+            # self.data = self.database.create_collection(collection_name)
+            self.database.create_collection(collection_name,key_increment=True)
             # print('(DataManagement)(add_collection)', self.data.all())
             # self.data = self.database.collection(collection_name)
         except ArangoError as exc:
