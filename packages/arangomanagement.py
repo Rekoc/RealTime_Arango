@@ -15,11 +15,11 @@ class DataManagement():
     data = database
 
     # Database information
-    database_name = 'database1'
-    database_host = '127.0.0.1'
-    database_port = 8529
+    database_name = ''                # 'database1'
+    database_host = ''                # '127.0.0.1'
+    database_port = ''                # 8529
     database_status = True
-    user_name = 'root'
+    user_name = ''                    # 'root'
     user_password = ''
     ###########################
 
@@ -93,7 +93,7 @@ class DataManagement():
             enable_logging=True
         )
         # Create a new database named "databaseName"
-        print('(DataManagement)(create_database) self.database_name = ', self.database_name)
+        # print('(DataManagement)(create_database) self.database_name = ', self.database_name)
         try:
             self.database = self.client.create_database(self.database_name)
         except ConnectionError as exc:
@@ -157,10 +157,6 @@ class DataManagement():
         except ArangoError as exc:
             print('(DataManagement)(read_data) ', repr(exc))
 
-    '''def find_key(self):
-        key = self.data.find(53)
-        return key'''
-
     def use_query(self, collection, function_name):
         # print('(DataManagement)(create_query) BEGIN')
         aql = AqlRequest(collection, function_name)
@@ -209,4 +205,7 @@ class DataManagement():
     def __str__(self):
         return 'Data Management'
     
-    #def deleteDatabase()
+    def __del__(self):
+        print("(DataManagement)(__del__)")
+
+

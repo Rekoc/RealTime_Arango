@@ -7,6 +7,7 @@ from packages.Ui.ui_mainwindow import Ui_MainWindow
 from packages.Ui.ui_terminal import Ui_terminal
 from packages.Ui.ui_form_database import Ui_Form_Database
 from packages.Ui.ui_form_collection import Ui_Form_Collection
+from packages.Ui.ui_collection_list import Ui_Collection_List
 from PyQt5.QtWidgets import QWidget, QDialog, QFileDialog, QErrorMessage, QMessageBox, QLabel, QLineEdit, QFormLayout, QPushButton
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import QObject, pyqtSignal
@@ -45,7 +46,6 @@ class MainWindow(Ui_MainWindow):
         ##############
         ###DEBUG#####
         self.ui.pushButton_file_import_DEBUG.clicked.connect(self.pushButton_file_import_DEBUG_clicked)
-        # self.term_value_changed.connect(self.term_value_changed)
         #############
 
         self.ui.pushButton_connection.setEnabled(True)
@@ -79,13 +79,15 @@ class MainWindow(Ui_MainWindow):
         # self.ui.pushButton_send.clicked.connect(self.pushButton_send)
 
     def pushButton_disconnection_clicked(self):
-        pass
+        del self.database
+        self.database = DataManagement()
+        self.database_ui_update()
 
     def pushButton_scan_clicked(self):
-        pass
+        list_test = ["lol", "ntm", "lol", "ntm", "lol", "ntm", "lol", "ntm"]
+        self.widget = Ui_Collection_List(*list_test)
 
-    def term_value_changed(self):
-        print("(MainWindow)(term_value_changed) term_var = ", self.term_var)
+        self.ui.verticalLayout.addWidget(self.widget.Collection_List)
 
     def actionUpdate_clicked(self):
         self.database_ui_update()
@@ -103,7 +105,7 @@ class MainWindow(Ui_MainWindow):
     def pushButton_file_import_DEBUG_clicked(self):
         # path_file = 'TEST_short.TXT'
         if self.path_file[0]=='':
-            print("(MainWindow)(pushButton_file_import_DEBUG_clicked) self.path_file[0]=='' ")
+            # print("(MainWindow)(pushButton_file_import_DEBUG_clicked) self.path_file[0]=='' ")
             error_message = QMessageBox(None)
             error_message.setText('Please click on "File import" and choose your path first ...')
             error_message.setWindowTitle('Warning')
