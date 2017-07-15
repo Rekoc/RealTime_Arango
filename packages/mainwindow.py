@@ -84,8 +84,27 @@ class MainWindow(Ui_MainWindow):
         self.database_ui_update()
 
     def pushButton_scan_clicked(self):
-        list_test = ["lol", "ntm", "lol", "ntm", "lol", "ntm", "lol", "ntm"]
-        self.widget = Ui_Collection_List(*list_test)
+        list_collections = self.database.collection_list()
+        print('(MainWindown)(pushButton_scan_clicked) list_test = ', list_collections)
+        print('(MainWindown)(pushButton_scan_clicked) list_test[0] = ', list_collections[0])
+        print('(MainWindown)(pushButton_scan_clicked) list_test[0] = ', list_collections[0]['name'])
+        print('(MainWindown)(pushButton_scan_clicked) len(list_test) = ', len(list_collections))
+        i = 0
+        list_collection = ['']
+        j = 0
+        for list_collectionnn in list_collections:
+            if list_collections[i]['name'][0] == '_':
+                # print("(MainWindown)(pushButton_scan_clicked) contrain '_' : ", list_collections[i]['name'])
+                pass
+            else:
+                # print("(MainWindown)(pushButton_scan_clicked) don't contain '_' : ", list_collections[i]['name'])
+                list_collection[j] = list_collections[i]['name']
+                j += 1
+            i += 1
+        del i, j
+        # print("(MainWindown)(pushButton_scan_clicked) list_collection = ", list_collection)
+
+        self.widget = Ui_Collection_List(*list_collection)
 
         self.ui.verticalLayout.addWidget(self.widget.Collection_List)
 

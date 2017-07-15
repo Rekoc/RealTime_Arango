@@ -151,6 +151,10 @@ class DataManagement():
             print('(DataManagement)(add_data) No data !')
             return kwargs
 
+    def collection_list(self):
+        kwark = self.database.collections()
+        return kwark
+
     def read_data(self, key):
         try:
             return self.database.get_document(key)
