@@ -22,7 +22,7 @@ class MainWindow(Ui_MainWindow):
     term = object
     path_file = ['', '']
     term_var = 0
-    term_value_changed = pyqtSignal(int)
+    tempo = ''
 
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -85,12 +85,12 @@ class MainWindow(Ui_MainWindow):
 
     def pushButton_scan_clicked(self):
         list_collections = self.database.collection_list()
-        print('(MainWindown)(pushButton_scan_clicked) list_test = ', list_collections)
-        print('(MainWindown)(pushButton_scan_clicked) list_test[0] = ', list_collections[0])
-        print('(MainWindown)(pushButton_scan_clicked) list_test[0] = ', list_collections[0]['name'])
-        print('(MainWindown)(pushButton_scan_clicked) len(list_test) = ', len(list_collections))
+        # print('(MainWindown)(pushButton_scan_clicked) list_test = ', list_collections)
+        # print('(MainWindown)(pushButton_scan_clicked) list_test[0] = ', list_collections[0])
+        # print('(MainWindown)(pushButton_scan_clicked) list_test[0] = ', list_collections[0]['name'])
+        # print('(MainWindown)(pushButton_scan_clicked) len(list_test) = ', len(list_collections))
         i = 0
-        list_collection = ['']
+        list_collection = ['' for x in range(100)]
         j = 0
         for list_collectionnn in list_collections:
             if list_collections[i]['name'][0] == '_':
@@ -105,8 +105,17 @@ class MainWindow(Ui_MainWindow):
         # print("(MainWindown)(pushButton_scan_clicked) list_collection = ", list_collection)
 
         self.widget = Ui_Collection_List(*list_collection)
-
+        self.push_button_list_validation = QPushButton('Send')
         self.ui.verticalLayout.addWidget(self.widget.Collection_List)
+        self.ui.verticalLayout.addWidget(self.push_button_list_validation)
+        self.push_button_list_validation.clicked.connect(self.push_button_list_validation_clicked)
+
+    def push_button_list_validation_clicked(self):
+        self.tempo = self.widget._current_choice()
+        # print('(MainWindown)(push_button_list_validation_clicked) your choose is : ', self.tempo)
+        self.push_button_list_validation.deleteLater()
+        del self.widget, self.push_button_list_validation
+        self.database.add_collection(self.tempo)
 
     def actionUpdate_clicked(self):
         self.database_ui_update()
