@@ -5,6 +5,7 @@ Graphic application for real time application wrote in Python3 with ArangoDB as 
 	- PyQt5
 	- Python >= 3.5.x
 	- ArangoDB >= 3.1.x
+	- Matplot Lab >= 2.0.2
 	
 # Features
 This application has the following features:
