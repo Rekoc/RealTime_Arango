@@ -1,6 +1,7 @@
 # python 3.5.X
-# Made for ArangoDB 3.1.X - PyQt5 - Pyuic5
+# Made for ArangoDB 3.1.X - PyQt5 - Pyuic5 - matplotlib 2.0.2
 
+from packages.matplotlibmanage import UpdateDist
 from packages.arangomanagement import DataManagement
 from packages.fileanalytics import FileAnalytics
 from packages.Ui.ui_mainwindow import Ui_MainWindow
@@ -46,9 +47,14 @@ class MainWindow(Ui_MainWindow):
         ##############
         ###DEBUG#####
         self.ui.pushButton_file_import_DEBUG.clicked.connect(self.pushButton_file_import_DEBUG_clicked)
+        self.ui.pushButton_graph.clicked.connect(self.pushButton_graph_clicked)
         #############
 
         self.ui.pushButton_connection.setEnabled(True)
+        self.ui.pushButton_create_flux.setEnabled(False)
+        self.ui.pushButton_file_import.setEnabled(False)
+        self.ui.pushButton_file_import_DEBUG.setEnabled(False)
+        self.ui.pushButton_scan.setEnabled(False)
 
         # self.term = Terminal()
         '''self.widget = Ui_Form_Database()
@@ -67,7 +73,9 @@ class MainWindow(Ui_MainWindow):
         else:
             self.ui.status_connection.setText('Unavailable')
 
+    ###############################
     # Qt Creator slot
+    ###############################
     def pushButton_connection_clicked(self):
         # self.term.add_widget('Database name:')
         # self.term.exec_()
@@ -195,10 +203,18 @@ class MainWindow(Ui_MainWindow):
         self.push_button_validation.disconnect()
         self.push_button_validation.deleteLater()
         del self.widget
-        self.ui.pushButton_connection.setEnabled(True)
         self.ui.pushButton_disconnection.setEnabled(True)
         self.ui.pushButton_file_import_DEBUG.setEnabled(True)
+        self.ui.pushButton_create_flux.setEnabled(True)
+        self.ui.pushButton_file_import.setEnabled(True)
+        self.ui.pushButton_scan.setEnabled(True)
         self.database_ui_update()
+
+    def pushButton_graph_clicked(self):
+        print('(MainWindow)(pushButton_graph_clicked) BEGIN')
+        graph_manage = UpdateDist()
+        graph_manage.init()
+        print('(MainWindow)(pushButton_graph_clicked) END')
 
 
 ##########################
