@@ -1,6 +1,7 @@
 from multiprocessing import Process
 import multiprocessing
 import time
+# http://astuces.absolacom.com/developpement/python-obtenir-le-nom-et-des-infos-sur-la-fonction-appelante/
 
 print('(Main) BEGIN process_test.py')
 
